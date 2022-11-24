@@ -1,0 +1,36 @@
+#calculator{
+    width: 25%;
+    height: 100vh;
+    background-color: blueviolet;
+    border-radius: 16px;
+    color: white;
+    font-weight: bold;
+}
+
+#layar{
+    background-color: rgb(226, 221, 231, 0.3);
+    /* background-color: rgb(183, 119, 242); */
+    height: 45vh;
+    border-radius: 16px 16px 0 0;
+}
+#papan-tombol{
+    background-color: rgb(92, 35, 145, 0.2);
+    height: 45vh;
+    border-radius: 0 0 16px 16px;
+}
+#theme{
+    height: 32px;
+    background-color: white;
+}
+
+/* style untuk setiap tombol */
+.row > .col{
+    height: 2rem;
+    margin: 12px 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    background-color: rgb(92, 35, 145, 0.5);
+    box-shadow: 2px 3px rgba(198, 191, 204, 0.1);
+}
