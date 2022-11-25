@@ -1,18 +1,25 @@
+'use strict';
+
 var textBesar = document.querySelector(".text-besar");
 var clickPertama = true;
 var textBesarArr = [];
-console.log(textBesarArr);
-for(x=0; x<document.querySelectorAll(".col").length; x++){
+
+
+for(var x=0; x<document.querySelectorAll(".col").length; x++){
     document.querySelectorAll(".col")[x].addEventListener("click",(e)=>{
         var input = e.target.getAttribute("data-number"); //string
         
+        inputOperator(input);
         inputNumber(input);
         aritmatika(input);
+        console.log(textBesarArr);
+        console.log(textBesarArr.join(""));
+
     });
 }
 
 function inputNumber(number){
-    var inputNumberBoleh = ["1","2","3","4","5","6","7","8","9","0","00","000"];
+    var inputNumberBoleh = ["1","2","3","4","5","6","7","8","9"];
     var inputNumberTolak = ["0","00","000"];
    if(clickPertama){
         if(inputNumberTolak.includes(number)){
@@ -29,6 +36,18 @@ function inputNumber(number){
         if(inputNumberBoleh.includes(number)){
             textBesar.innerHTML += number;
             textBesarArr.push(number);
+            
+        }else if(inputNumberTolak.includes(number)){
+            textBesar.innerHTML += number;
+            console.log(typeof(number));
+            if(number == "0"){
+                textBesarArr[textBesarArr.length-1] *= 10;
+            }else if(number == "00"){
+                textBesarArr[textBesarArr.length-1] *= 100;
+            }else{
+                textBesarArr[textBesarArr.length-1] *= 1000;
+            }
+            
         }else{
             return null;
         }
@@ -36,27 +55,31 @@ function inputNumber(number){
 }
 
 function inputOperator(operator){
-    var operatorBoleh = ["clear","del","/100","/","x","+","-","equal"];
+    var operatorBoleh = ["clear","del","equal"];
     if(!clickPertama){
         if(operatorBoleh.includes(operator)){
-            
+            hapusClear(operator);
         }
     }
 }
-
+function hapusClear(operator){
+    textBesar.innerHTML = "0";
+    clickPertama = true;
+    textBesarArr = [];
+}
 
 function aritmatika(operator){
     var aritmatikaBoleh = ["/100","/","x","+","-"];
 
     if(!clickPertama){
-
-        if(aritmatikaBoleh.includes(operator)){
-            textBesar.innerHTML += operator;
-            textBesarArr.push(operator);
+        if(aritmatikaBoleh.includes(textBesarArr[textBesarArr.length-1])){
+            return null;
+        }else{
+            if(aritmatikaBoleh.includes(operator)){
+                textBesar.innerHTML += operator;
+                textBesarArr.push(operator);
+            }
         }
-        console.log(typeof(textBesarArr));
-        console.log(textBesarArr);
     }
+    // console.log(aritmatikaBoleh.includes(textBesarArr[textBesarArr.length-1]));
 }
-
-
