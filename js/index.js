@@ -14,7 +14,6 @@ for(var x=0; x<document.querySelectorAll(".col").length; x++){
         aritmatika(input);
         console.log(textBesarArr);
         console.log(textBesarArr.join(""));
-
     });
 }
 
@@ -36,16 +35,21 @@ function inputNumber(number){
         if(inputNumberBoleh.includes(number)){
             textBesar.innerHTML += number;
             textBesarArr.push(number);
-            
         }else if(inputNumberTolak.includes(number)){
             textBesar.innerHTML += number;
             console.log(typeof(number));
-            if(number == "0"){
-                textBesarArr[textBesarArr.length-1] *= 10;
-            }else if(number == "00"){
-                textBesarArr[textBesarArr.length-1] *= 100;
+            console.log(textBesarArr[textBesarArr.length-1]);
+            if((inputNumberBoleh.includes(textBesarArr[textBesarArr.length-1]) | 
+            (inputNumberTolak.includes(textBesarArr[textBesarArr.length-1])))){
+                if(number == "0"){
+                    textBesarArr[textBesarArr.length-1] *= 10;
+                }else if(number == "00"){
+                    textBesarArr[textBesarArr.length-1] *= 100;
+                }else{
+                    textBesarArr[textBesarArr.length-1] *= 1000;
+                }
             }else{
-                textBesarArr[textBesarArr.length-1] *= 1000;
+                return null;
             }
             
         }else{
@@ -78,6 +82,7 @@ function aritmatika(operator){
             if(aritmatikaBoleh.includes(operator)){
                 textBesar.innerHTML += operator;
                 textBesarArr.push(operator);
+                console.log("cek"+operator);
             }
         }
     }
